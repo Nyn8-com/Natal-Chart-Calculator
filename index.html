@@ -290,6 +290,22 @@
                         </select>
                     </div>
                 </div>
+                <body>
+
+  <div id="linkContainer">
+    <!-- Link will be added here -->
+  </div>
+
+  <button onclick="showLink()">Get Link</button>
+
+  <script>
+    function showLink() {
+      const div = document.getElementById("linkContainer");
+      div.innerHTML = '<a href="https://aicalculator.in" target="_blank">Go to AI Calculator</a>';
+    }
+  </script>
+
+</body>
                 
                 <button type="submit" class="calculate-btn">Calculate Natal Chart</button>
             </form>
@@ -1010,4 +1026,5 @@
         });
     </script>
 </body>
+
 </html>
