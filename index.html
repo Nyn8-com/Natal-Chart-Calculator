@@ -3,50 +3,289 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Discover your cosmic blueprint with our free Natal Birth Chart Calculator. Get instant insights into your personality, destiny, and cosmic alignment.">
+    <meta name="keywords" content="natal chart calculator, birth chart, astrology calculator, zodiac signs, planetary positions, astrological birth chart, free astrology tools">
+    <meta name="author" content="AstroChart Hub">
+    <meta name="robots" content="index, follow">
+    
+    <title>Natal Birth Chart Calculator - Discover Your Cosmic Blueprint | AstroChart Hub</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Lora:wght@400;500;600&display=swap" rel="stylesheet">
+    
     <style>
+        /* Reset and Base Styles */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #1e3c72, #2a5298);
-            min-height: 100vh;
-            color: #333;
+        html {
+            scroll-behavior: smooth;
         }
 
-        .container {
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            min-height: 100vh;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Lora', serif;
+            font-weight: 600;
+            line-height: 1.3;
+            margin-bottom: 1rem;
+        }
+
+        h1 { font-size: 3.5rem; }
+        h2 { font-size: 2.5rem; }
+        h3 { font-size: 2rem; }
+        h4 { font-size: 1.5rem; }
+
+        p {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        /* Header Styles */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(15, 12, 41, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .header.scrolled {
+            background: rgba(15, 12, 41, 0.98);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
         }
 
-        .header {
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #fff;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-icon {
+            font-size: 2rem;
+            color: #ffd700;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-menu a:hover {
+            color: #ffd700;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #ffd700;
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 4px;
+        }
+
+        .mobile-menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: #fff;
+            transition: all 0.3s ease;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             text-align: center;
-            color: white;
-            margin-bottom: 30px;
+            padding: 120px 2rem 2rem;
+            position: relative;
+            overflow: hidden;
         }
 
-        .header h2 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.2) 0%, transparent 50%);
+            z-index: 1;
         }
 
-        .input-section {
-            background: white;
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            color: #fff;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero p {
+            color: #e0e0e0;
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #ffd700, #ffed4e);
+            color: #333;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(255, 215, 0, 0.4);
+        }
+
+        /* Floating Stars Animation */
+        .stars {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #fff;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        /* Main Content */
+        .main-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            color: #fff;
+            margin-bottom: 3rem;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #e0e0e0;
+            font-size: 1.2rem;
+            margin-bottom: 4rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Calculator Section */
+        .calculator-section {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin: 2rem;
+        }
+
+        .calculator-container {
+            background: rgba(255, 255, 255, 0.95);
             border-radius: 15px;
-            padding: 30px;
-            margin-bottom: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            padding: 3rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .calculator-title {
+            color: #333;
+            text-align: center;
+            margin-bottom: 2rem;
         }
 
         .form-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-bottom: 20px;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
         }
 
         .form-group {
@@ -55,966 +294,687 @@
         }
 
         .form-group label {
-            font-weight: bold;
-            margin-bottom: 5px;
-            color: #2a5298;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #333;
         }
 
-        .form-group input, .form-group select {
-            padding: 12px;
+        .form-group input,
+        .form-group select {
+            padding: 1rem;
             border: 2px solid #e0e0e0;
-            border-radius: 8px;
-            font-size: 16px;
-            transition: border-color 0.3s;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: #fff;
         }
 
-        .form-group input:focus, .form-group select:focus {
+        .form-group input:focus,
+        .form-group select:focus {
             outline: none;
-            border-color: #2a5298;
+            border-color: #ffd700;
+            box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.1);
         }
 
         .calculate-btn {
             background: linear-gradient(135deg, #667eea, #764ba2);
             color: white;
-            padding: 15px 30px;
+            padding: 1.2rem 3rem;
             border: none;
-            border-radius: 8px;
-            font-size: 18px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
             cursor: pointer;
-            transition: transform 0.3s;
+            transition: all 0.3s ease;
             width: 100%;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
         }
 
         .calculate-btn:hover {
             transform: translateY(-2px);
+            box-shadow: 0 12px 35px rgba(102, 126, 234, 0.4);
         }
 
-        .results-section {
-            display: none;
-            background: white;
+        /* Tools Grid */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .tool-card {
+            background: rgba(255, 255, 255, 0.95);
             border-radius: 15px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-
-        .chart-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 30px;
-            margin-bottom: 30px;
-        }
-
-        .chart-wheel {
-            flex: 1;
-            min-width: 400px;
-            position: relative;
-        }
-
-        .planet-data {
-            flex: 1;
-            min-width: 300px;
-        }
-
-        .chart-svg {
-            width: 100%;
-            height: 400px;
-            border: 2px solid #2a5298;
-            border-radius: 50%;
-            background: radial-gradient(circle, #f8f9ff, #e8eeff);
-        }
-
-        .planet-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-
-        .planet-table th,
-        .planet-table td {
-            padding: 12px;
-            text-align: left;
-            border-bottom: 1px solid #e0e0e0;
-        }
-
-        .planet-table th {
-            background: #2a5298;
-            color: white;
-        }
-
-        .planet-table tr:hover {
-            background: #f5f5f5;
-        }
-
-        .interpretations {
-            margin-top: 30px;
-        }
-
-        .interpretation-card {
-            background: #f8f9ff;
-            border-left: 4px solid #2a5298;
-            margin-bottom: 20px;
-            padding: 20px;
-            border-radius: 8px;
-        }
-
-        .interpretation-card h3 {
-            color: #2a5298;
-            margin-bottom: 10px;
-        }
-
-        .error-message {
-            background: #ffe6e6;
-            color: #d32f2f;
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            display: none;
-            border-left: 4px solid #d32f2f;
-        }
-
-        .loading {
+            padding: 2rem;
             text-align: center;
-            padding: 20px;
-            display: none;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
 
-        .spinner {
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid #2a5298;
-            border-radius: 50%;
+        .tool-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .tool-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #ffd700;
+        }
+
+        .tool-card h3 {
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .tool-card p {
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+
+        .tool-link {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .tool-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        /* Benefits Section */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .benefit-item {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .benefit-icon {
+            font-size: 3rem;
+            color: #ffd700;
+            margin-bottom: 1rem;
+        }
+
+        .benefit-item h4 {
+            color: #fff;
+            margin-bottom: 1rem;
+        }
+
+        .benefit-item p {
+            color: #e0e0e0;
+        }
+
+        /* FAQ Section */
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            overflow: hidden;
+        }
+
+        .faq-question {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .faq-question h4 {
+            color: #fff;
+            margin: 0;
+        }
+
+        .faq-toggle {
+            color: #ffd700;
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .faq-answer.active {
+            padding: 1.5rem;
+            max-height: 500px;
+        }
+
+        .faq-answer p {
+            color: #e0e0e0;
+            margin: 0;
+        }
+
+        /* Footer */
+        .footer {
+            background: rgba(15, 12, 41, 0.95);
+            padding: 3rem 2rem 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: #e0e0e0;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #ffd700;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-link {
+            display: inline-block;
             width: 40px;
             height: 40px;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            text-decoration: none;
+            transition: all 0.3s ease;
         }
 
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        .social-link:hover {
+            background: #ffd700;
+            color: #333;
+            transform: translateY(-2px);
         }
 
+        .copyright {
+            color: #999;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+        }
+
+        /* Responsive Design */
         @media (max-width: 768px) {
-            .container {
-                padding: 10px;
+            .nav-menu {
+                display: none;
             }
-            
-            .header h2 {
-                font-size: 2rem;
+
+            .mobile-menu-toggle {
+                display: flex;
             }
-            
+
+            .nav-container {
+                padding: 0 1rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .section {
+                padding: 3rem 1rem;
+            }
+
+            .calculator-container {
+                padding: 2rem 1.5rem;
+            }
+
             .form-grid {
                 grid-template-columns: 1fr;
             }
-            
-            .chart-container {
+
+            .tools-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-links {
                 flex-direction: column;
-            }
-            
-            .chart-wheel {
-                min-width: auto;
-            }
-            
-            .chart-svg {
-                height: 300px;
+                gap: 1rem;
             }
         }
 
-        .zodiac-signs {
-            font-size: 14px;
-            font-weight: bold;
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .calculator-container {
+                padding: 1.5rem 1rem;
+            }
         }
 
-        .planet-symbol {
-            font-size: 18px;
-            font-weight: bold;
-            color: #2a5298;
-        }
+        /* Utility Classes */
+        .text-center { text-align: center; }
+        .mb-2 { margin-bottom: 2rem; }
+        .mb-3 { margin-bottom: 3rem; }
+        .mt-2 { margin-top: 2rem; }
+        .mt-3 { margin-top: 3rem; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h2>🌟 Natal Chart Calculator 🌟</h2>
-            <p>Discover your cosmic blueprint with precise astrological calculations</p>
+    <!-- Header -->
+    <header class="header" id="header">
+        <nav class="nav-container">
+            <a href="#" class="logo">
+                <span class="logo-icon">🌟</span>
+                AstroChart Hub
+            </a>
+            <ul class="nav-menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#natal-chart">Natal Birth Chart</a></li>
+                <li><a href="#moon-sign">Moon Sign Calculator</a></li>
+                <li><a href="#ascendant">Ascendant Sign Calculator</a></li>
+                <li><a href="#sun-astrology">Sun Astrology Calculator</a></li>
+                <li><a href="#blog">Blog</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="mobile-menu-toggle" id="mobileMenuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="stars" id="stars"></div>
+        <div class="hero-content">
+            <h1>Discover Your Natal Birth Chart</h1>
+            <p>Unlock the secrets of your personality, destiny, and cosmic alignment with our free Natal Birth Chart Calculator</p>
+            <a href="#natal-chart" class="cta-button">Calculate Now</a>
         </div>
+    </section>
 
-        <div class="input-section">
-            <h2>Birth Information</h2>
-            <div class="error-message" id="errorMessage"></div>
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Natal Birth Chart Calculator Section -->
+        <section class="section calculator-section" id="natal-chart">
+            <div class="section-title">
+                <h2>🌟 Natal Birth Chart Calculator 🌟</h2>
+                <p class="section-subtitle">Discover your cosmic blueprint with precise astrological calculations</p>
+            </div>
             
-            <form id="chartForm">
-                <div class="form-grid">
-                    <div class="form-group">
-                        <label for="birthDate">Birth Date:</label>
-                        <input type="date" id="birthDate" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="birthTime">Birth Time:</label>
-                        <input type="time" id="birthTime" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="birthLocation">Birth Location (City, Country):</label>
-                        <input type="text" id="birthLocation" placeholder="e.g., New York, NY, USA" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="timezone">Time Zone (UTC offset):</label>
-                        <select id="timezone">
-                            <option value="-12">UTC-12</option>
-                            <option value="-11">UTC-11</option>
-                            <option value="-10">UTC-10</option>
-                            <option value="-9">UTC-9</option>
-                            <option value="-8">UTC-8</option>
-                            <option value="-7">UTC-7</option>
-                            <option value="-6">UTC-6</option>
-                            <option value="-5" selected>UTC-5</option>
-                            <option value="-4">UTC-4</option>
-                            <option value="-3">UTC-3</option>
-                            <option value="-2">UTC-2</option>
-                            <option value="-1">UTC-1</option>
-                            <option value="0">UTC+0</option>
-                            <option value="1">UTC+1</option>
-                            <option value="2">UTC+2</option>
-                            <option value="3">UTC+3</option>
-                            <option value="4">UTC+4</option>
-                            <option value="5">UTC+5</option>
-                            <option value="6">UTC+6</option>
-                            <option value="7">UTC+7</option>
-                            <option value="8">UTC+8</option>
-                            <option value="9">UTC+9</option>
-                            <option value="10">UTC+10</option>
-                            <option value="11">UTC+11</option>
-                            <option value="12">UTC+12</option>
-                        </select>
-                    </div>
-                </div>
-                <body>
-
-  <div id="linkContainer">
-    <a href="https://aicalculator.in">Go to Official Site AiCalculator.in</a>
-  </div>
+            <div class="calculator-container">
+                <h3 class="calculator-title">Birth Information</h3>
                 
-                <button type="submit" class="calculate-btn">Calculate Natal Chart</button>
-            </form>
-            
-            <div class="loading" id="loading">
-                <div class="spinner"></div>
-                <p>Calculating your natal chart...</p>
+                <form id="natalChartForm">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="birthDate">Birth Date:</label>
+                            <input type="date" id="birthDate" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="birthTime">Birth Time:</label>
+                            <input type="time" id="birthTime" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="birthLocation">Birth Location (City, Country):</label>
+                            <input type="text" id="birthLocation" placeholder="e.g., New York, NY, USA" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="timezone">Time Zone (UTC offset):</label>
+                            <select id="timezone">
+                                <option value="-12">UTC-12</option>
+                                <option value="-11">UTC-11</option>
+                                <option value="-10">UTC-10</option>
+                                <option value="-9">UTC-9</option>
+                                <option value="-8">UTC-8</option>
+                                <option value="-7">UTC-7</option>
+                                <option value="-6">UTC-6</option>
+                                <option value="-5" selected>UTC-5</option>
+                                <option value="-4">UTC-4</option>
+                                <option value="-3">UTC-3</option>
+                                <option value="-2">UTC-2</option>
+                                <option value="-1">UTC-1</option>
+                                <option value="0">UTC+0</option>
+                                <option value="1">UTC+1</option>
+                                <option value="2">UTC+2</option>
+                                <option value="3">UTC+3</option>
+                                <option value="4">UTC+4</option>
+                                <option value="5">UTC+5</option>
+                                <option value="6">UTC+6</option>
+                                <option value="7">UTC+7</option>
+                                <option value="8">UTC+8</option>
+                                <option value="9">UTC+9</option>
+                                <option value="10">UTC+10</option>
+                                <option value="11">UTC+11</option>
+                                <option value="12">UTC+12</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="calculate-btn">Calculate Natal Chart</button>
+                </form>
             </div>
-        </div>
+        </section>
 
-        <div class="results-section" id="resultsSection">
-            <h2>Your Natal Chart</h2>
+        <!-- Explore More Tools Section -->
+        <section class="section" id="tools">
+            <div class="section-title">
+                <h2>Explore More Astrology Tools</h2>
+                <p class="section-subtitle">Discover additional cosmic insights with our comprehensive astrology calculator suite</p>
+            </div>
             
-            <div class="chart-container">
-                <div class="chart-wheel">
-                    <svg class="chart-svg" id="chartSvg" viewBox="0 0 400 400">
-                        <!-- Chart will be drawn here -->
-                    </svg>
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <div class="tool-icon">🌙</div>
+                    <h3>Moon Sign Calculator</h3>
+                    <p>Discover your emotional nature and inner self through your Moon sign placement</p>
+                    <a href="https://aicalculator.in/moon-sign-calculator/" class="tool-link" target="_blank">Calculate Moon Sign</a>
                 </div>
                 
-                <div class="planet-data">
-                    <h3>Planetary Positions</h3>
-                    <table class="planet-table" id="planetTable">
-                        <thead>
-                            <tr>
-                                <th>Planet</th>
-                                <th>Sign</th>
-                                <th>Degree</th>
-                                <th>House</th>
-                            </tr>
-                        </thead>
-                        <tbody id="planetTableBody">
-                            <!-- Planet data will be inserted here -->
-                        </tbody>
-                    </table>
+                <div class="tool-card">
+                    <div class="tool-icon">⭐</div>
+                    <h3>Ascendant Sign Calculator</h3>
+                    <p>Learn how you appear to others and your first impressions with your Rising sign</p>
+                    <a href="https://aicalculator.in/category/ai-calculators/astrology-calculator/" class="tool-link" target="_blank">Calculate Ascendant</a>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-icon">☀️</div>
+                    <h3>Sun Astrology Calculator</h3>
+                    <p>Understand your core personality and life purpose through your Sun sign</p>
+                    <a href="https://aicalculator.in/category/ai-calculators/astrology-calculator/" class="tool-link" target="_blank">Calculate Sun Sign</a>
                 </div>
             </div>
+        </section>
+
+        <!-- Benefits Section -->
+        <section class="section" id="benefits">
+            <div class="section-title">
+                <h2>Why Use Our Natal Chart Calculator?</h2>
+                <p class="section-subtitle">Discover the transformative power of understanding your cosmic blueprint</p>
+            </div>
             
-            <div class="interpretations" id="interpretations">
-                <!-- Interpretations will be inserted here -->
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <div class="benefit-icon">🔮</div>
+                    <h4>Personal Insight</h4>
+                    <p>Gain deep understanding of your strengths, weaknesses, and unique personality traits</p>
+                </div>
+                
+                <div class="benefit-item">
+                    <div class="benefit-icon">💼</div>
+                    <h4>Career Guidance</h4>
+                    <p>Discover your natural talents and ideal career paths based on your planetary positions</p>
+                </div>
+                
+                <div class="benefit-item">
+                    <div class="benefit-icon">❤️</div>
+                    <h4>Relationship Understanding</h4>
+                    <p>Learn how to navigate relationships and understand compatibility with others</p>
+                </div>
+                
+                <div class="benefit-item">
+                    <div class="benefit-icon">🌌</div>
+                    <h4>Cosmic Blueprint</h4>
+                    <p>Understand your life purpose and the unique energies that shape your destiny</p>
+                </div>
+                
+                <div class="benefit-item">
+                    <div class="benefit-icon">⚡</div>
+                    <h4>Instant Results</h4>
+                    <p>Get your complete natal chart analysis in seconds with our advanced calculation engine</p>
+                </div>
+                
+                <div class="benefit-item">
+                    <div class="benefit-icon">🎯</div>
+                    <h4>Life Timing</h4>
+                    <p>Understand the best times for important decisions and life changes</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="section" id="faq">
+            <div class="section-title">
+                <h2>Frequently Asked Questions</h2>
+                <p class="section-subtitle">Everything you need to know about Natal Charts and our calculator</p>
+            </div>
+            
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h4>What is a Natal Chart?</h4>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>A natal chart, also known as a birth chart, is a snapshot of the sky at the exact moment and place you were born. It maps the positions of planets, stars, and other celestial bodies, creating a unique cosmic fingerprint that reveals your personality, life path, and potential.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h4>How accurate is the birth time for calculations?</h4>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Birth time accuracy is crucial for precise natal chart calculations, especially for determining your Ascendant (Rising sign) and house positions. The more accurate your birth time, the more precise your chart will be. Even a few minutes difference can significantly impact your chart interpretation.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h4>What do the different houses represent?</h4>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>The 12 houses in astrology represent different areas of life: 1st (self, appearance), 2nd (money, values), 3rd (communication, siblings), 4th (home, family), 5th (creativity, romance), 6th (work, health), 7th (partnerships), 8th (transformation, shared resources), 9th (higher learning, travel), 10th (career, reputation), 11th (friends, groups), and 12th (spirituality, subconscious).</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h4>Can I use this calculator if I don't know my exact birth time?</h4>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>While you can still get valuable insights about your Sun, Moon, and planetary positions without an exact birth time, your Ascendant and house positions may not be accurate. For the most comprehensive reading, try to get your birth time from birth records or ask family members.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h4>How often should I check my natal chart?</h4>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Your natal chart remains the same throughout your life as it's based on your birth moment. However, you can refer to it regularly for self-reflection and understanding. For ongoing guidance, look into transits (current planetary movements) and progressions (evolving aspects of your chart) which change over time.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#home">Home</a>
+                <a href="#natal-chart">Natal Chart</a>
+                <a href="#tools">Astrology Tools</a>
+                <a href="#benefits">Benefits</a>
+                <a href="#faq">FAQ</a>
+                <a href="#contact">Contact</a>
+            </div>
+            
+            <div class="social-links">
+                <a href="#" class="social-link">📘</a>
+                <a href="#" class="social-link">🐦</a>
+                <a href="#" class="social-link">📷</a>
+                <a href="#" class="social-link">📺</a>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 AstroChart Hub. All rights reserved. | Powered by <a href="https://aicalculator.in" target="_blank" style="color: #ffd700;">AiCalculator.in</a></p>
             </div>
         </div>
-    </div>
+    </footer>
 
     <script>
-        // Astronomical and Astrological Calculation Engine
-        class NatalChartCalculator {
-            constructor() {
-                // Zodiac signs and their symbols
-                this.zodiacSigns = [
-                    { name: 'Aries', symbol: '♈', element: 'Fire', quality: 'Cardinal' },
-                    { name: 'Taurus', symbol: '♉', element: 'Earth', quality: 'Fixed' },
-                    { name: 'Gemini', symbol: '♊', element: 'Air', quality: 'Mutable' },
-                    { name: 'Cancer', symbol: '♋', element: 'Water', quality: 'Cardinal' },
-                    { name: 'Leo', symbol: '♌', element: 'Fire', quality: 'Fixed' },
-                    { name: 'Virgo', symbol: '♍', element: 'Earth', quality: 'Mutable' },
-                    { name: 'Libra', symbol: '♎', element: 'Air', quality: 'Cardinal' },
-                    { name: 'Scorpio', symbol: '♏', element: 'Water', quality: 'Fixed' },
-                    { name: 'Sagittarius', symbol: '♐', element: 'Fire', quality: 'Mutable' },
-                    { name: 'Capricorn', symbol: '♑', element: 'Earth', quality: 'Cardinal' },
-                    { name: 'Aquarius', symbol: '♒', element: 'Air', quality: 'Fixed' },
-                    { name: 'Pisces', symbol: '♓', element: 'Water', quality: 'Mutable' }
-                ];
-
-                // Planet symbols and meanings
-                this.planets = {
-                    'Sun': { symbol: '☉', color: '#FFA500' },
-                    'Moon': { symbol: '☽', color: '#C0C0C0' },
-                    'Mercury': { symbol: '☿', color: '#87CEEB' },
-                    'Venus': { symbol: '♀', color: '#FFB6C1' },
-                    'Mars': { symbol: '♂', color: '#FF4500' },
-                    'Jupiter': { symbol: '♃', color: '#FF8C00' },
-                    'Saturn': { symbol: '♄', color: '#8B4513' },
-                    'Uranus': { symbol: '♅', color: '#4169E1' },
-                    'Neptune': { symbol: '♆', color: '#0000FF' },
-                    'Pluto': { symbol: '♇', color: '#800080' }
-                };
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
             }
+        });
 
-            // Convert degrees to radians
-            toRadians(degrees) {
-                return degrees * (Math.PI / 180);
-            }
-
-            // Convert radians to degrees
-            toDegrees(radians) {
-                return radians * (180 / Math.PI);
-            }
-
-            // Calculate Julian Day Number
-            calculateJulianDay(year, month, day, hour, minute, timezoneOffset) {
-                // Convert to UTC
-                const utcHour = hour - timezoneOffset;
-                const decimalTime = utcHour + (minute / 60);
-                
-                // Julian Day calculation
-                let a = Math.floor((14 - month) / 12);
-                let y = year - a;
-                let m = month + 12 * a - 3;
-                
-                let jd = day + Math.floor((153 * m + 2) / 5) + 365 * y + Math.floor(y / 4) - Math.floor(y / 100) + Math.floor(y / 400) + 1721119;
-                
-                // Add time fraction
-                jd += (decimalTime - 12) / 24;
-                
-                return jd;
-            }
-
-            // Calculate Greenwich Sidereal Time
-            calculateGST(jd) {
-                const t = (jd - 2451545.0) / 36525.0;
-                let gst = 280.46061837 + 360.98564736629 * (jd - 2451545.0) + 0.000387933 * t * t - t * t * t / 38710000.0;
-                
-                // Normalize to 0-360 degrees
-                gst = gst % 360;
-                if (gst < 0) gst += 360;
-                
-                return gst;
-            }
-
-            // Calculate Local Sidereal Time
-            calculateLST(gst, longitude) {
-                let lst = gst + longitude;
-                lst = lst % 360;
-                if (lst < 0) lst += 360;
-                return lst;
-            }
-
-            // Simplified planetary position calculation
-            calculatePlanetPosition(planet, jd) {
-                const t = (jd - 2451545.0) / 36525.0;
-                let longitude = 0;
-
-                // Simplified orbital elements (this is a basic approximation)
-                switch (planet) {
-                    case 'Sun':
-                        longitude = 280.466 + 36000.769 * t;
-                        break;
-                    case 'Moon':
-                        longitude = 218.316 + 481267.881 * t;
-                        break;
-                    case 'Mercury':
-                        longitude = 252.25 + 149472.69 * t;
-                        break;
-                    case 'Venus':
-                        longitude = 181.98 + 58517.81 * t;
-                        break;
-                    case 'Mars':
-                        longitude = 355.43 + 19140.30 * t;
-                        break;
-                    case 'Jupiter':
-                        longitude = 34.35 + 3034.91 * t;
-                        break;
-                    case 'Saturn':
-                        longitude = 50.08 + 1222.11 * t;
-                        break;
-                    case 'Uranus':
-                        longitude = 314.05 + 428.46 * t;
-                        break;
-                    case 'Neptune':
-                        longitude = 304.35 + 218.46 * t;
-                        break;
-                    case 'Pluto':
-                        longitude = 238.96 + 145.18 * t;
-                        break;
-                }
-
-                // Normalize longitude
-                longitude = longitude % 360;
-                if (longitude < 0) longitude += 360;
-
-                return longitude;
-            }
-
-            // Calculate Ascendant
-            calculateAscendant(lst, latitude) {
-                const latRad = this.toRadians(latitude);
-                const lstRad = this.toRadians(lst);
-                
-                // Simplified ascendant calculation
-                let asc = Math.atan2(-Math.cos(lstRad), Math.sin(lstRad) * Math.tan(latRad));
-                asc = this.toDegrees(asc);
-                
-                if (asc < 0) asc += 360;
-                
-                return asc;
-            }
-
-            // Calculate house cusps using Placidus system (simplified)
-            calculateHouses(ascendant, lst, latitude) {
-                const houses = [];
-                const latRad = this.toRadians(latitude);
-                
-                // House 1 is the Ascendant
-                houses[0] = ascendant;
-                
-                // Calculate other house cusps (simplified Placidus approximation)
-                for (let i = 1; i < 12; i++) {
-                    houses[i] = (ascendant + (i * 30)) % 360;
-                }
-                
-                return houses;
-            }
-
-            // Determine which zodiac sign a degree falls into
-            getZodiacSign(longitude) {
-                const signIndex = Math.floor(longitude / 30);
-                const degree = longitude % 30;
-                return {
-                    sign: this.zodiacSigns[signIndex],
-                    degree: degree
-                };
-            }
-
-            // Determine which house a planet is in
-            getPlanetHouse(planetLongitude, houseCusps) {
-                for (let i = 0; i < 12; i++) {
-                    const currentHouse = houseCusps[i];
-                    const nextHouse = houseCusps[(i + 1) % 12];
-                    
-                    if (nextHouse > currentHouse) {
-                        if (planetLongitude >= currentHouse && planetLongitude < nextHouse) {
-                            return i + 1;
-                        }
-                    } else {
-                        if (planetLongitude >= currentHouse || planetLongitude < nextHouse) {
-                            return i + 1;
-                        }
-                    }
-                }
-                return 1; // Default to first house
-            }
-
-            // Main calculation function
-            calculateNatalChart(birthData) {
-                const { year, month, day, hour, minute, latitude, longitude, timezoneOffset } = birthData;
-                
-                // Calculate Julian Day
-                const jd = this.calculateJulianDay(year, month, day, hour, minute, timezoneOffset);
-                
-                // Calculate sidereal time
-                const gst = this.calculateGST(jd);
-                const lst = this.calculateLST(gst, longitude);
-                
-                // Calculate Ascendant
-                const ascendant = this.calculateAscendant(lst, latitude);
-                
-                // Calculate house cusps
-                const houses = this.calculateHouses(ascendant, lst, latitude);
-                
-                // Calculate planet positions
-                const planetPositions = {};
-                Object.keys(this.planets).forEach(planet => {
-                    const planetLongitude = this.calculatePlanetPosition(planet, jd);
-                    const zodiacInfo = this.getZodiacSign(planetLongitude);
-                    const house = this.getPlanetHouse(planetLongitude, houses);
-                    
-                    planetPositions[planet] = {
-                        longitude: planetLongitude,
-                        sign: zodiacInfo.sign,
-                        degree: zodiacInfo.degree,
-                        house: house
-                    };
-                });
-                
-                return {
-                    ascendant: ascendant,
-                    houses: houses,
-                    planets: planetPositions,
-                    ascendantSign: this.getZodiacSign(ascendant)
-                };
+        // Create floating stars
+        function createStars() {
+            const starsContainer = document.getElementById('stars');
+            const starCount = 50;
+            
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 3 + 's';
+                star.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                starsContainer.appendChild(star);
             }
         }
 
-        // Chart Renderer Class
-        class ChartRenderer {
-            constructor(svgElement) {
-                this.svg = svgElement;
-                this.centerX = 200;
-                this.centerY = 200;
-                this.outerRadius = 180;
-                this.innerRadius = 120;
-                this.signRadius = 150;
-                this.planetRadius = 100;
-            }
-
-            clearChart() {
-                this.svg.innerHTML = '';
-            }
-
-            drawChart(chartData) {
-                this.clearChart();
-                
-                // Draw outer circle
-                this.drawCircle(this.centerX, this.centerY, this.outerRadius, 'none', '#2a5298', 2);
-                
-                // Draw inner circle
-                this.drawCircle(this.centerX, this.centerY, this.innerRadius, 'none', '#2a5298', 1);
-                
-                // Draw zodiac signs
-                this.drawZodiacSigns();
-                
-                // Draw house divisions
-                this.drawHouses(chartData.houses);
-                
-                // Draw planets
-                this.drawPlanets(chartData.planets);
-                
-                // Mark Ascendant
-                this.markAscendant(chartData.ascendant);
-            }
-
-            drawCircle(cx, cy, r, fill, stroke, strokeWidth) {
-                const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-                circle.setAttribute('cx', cx);
-                circle.setAttribute('cy', cy);
-                circle.setAttribute('r', r);
-                circle.setAttribute('fill', fill);
-                circle.setAttribute('stroke', stroke);
-                circle.setAttribute('stroke-width', strokeWidth);
-                this.svg.appendChild(circle);
-            }
-
-            drawLine(x1, y1, x2, y2, stroke, strokeWidth) {
-                const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-                line.setAttribute('x1', x1);
-                line.setAttribute('y1', y1);
-                line.setAttribute('x2', x2);
-                line.setAttribute('y2', y2);
-                line.setAttribute('stroke', stroke);
-                line.setAttribute('stroke-width', strokeWidth);
-                this.svg.appendChild(line);
-            }
-
-            drawText(x, y, text, fontSize, fill, textAnchor = 'middle') {
-                const textElement = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-                textElement.setAttribute('x', x);
-                textElement.setAttribute('y', y);
-                textElement.setAttribute('font-size', fontSize);
-                textElement.setAttribute('fill', fill);
-                textElement.setAttribute('text-anchor', textAnchor);
-                textElement.setAttribute('dominant-baseline', 'central');
-                textElement.textContent = text;
-                this.svg.appendChild(textElement);
-            }
-
-            drawZodiacSigns() {
-                const calculator = new NatalChartCalculator();
-                for (let i = 0; i < 12; i++) {
-                    const angle = (i * 30) - 90; // Start from Aries at top
-                    const radian = (angle * Math.PI) / 180;
-                    const x = this.centerX + Math.cos(radian) * this.signRadius;
-                    const y = this.centerY + Math.sin(radian) * this.signRadius;
-                    
-                    this.drawText(x, y, calculator.zodiacSigns[i].symbol, 16, '#2a5298');
-                }
-            }
-
-            drawHouses(houses) {
-                for (let i = 0; i < 12; i++) {
-                    const angle = houses[i] - 90;
-                    const radian = (angle * Math.PI) / 180;
-                    
-                    const x1 = this.centerX + Math.cos(radian) * this.innerRadius;
-                    const y1 = this.centerY + Math.sin(radian) * this.innerRadius;
-                    const x2 = this.centerX + Math.cos(radian) * this.outerRadius;
-                    const y2 = this.centerY + Math.sin(radian) * this.outerRadius;
-                    
-                    this.drawLine(x1, y1, x2, y2, '#cccccc', 1);
-                    
-                    // House numbers
-                    const textAngle = (houses[i] + 15) - 90;
-                    const textRadian = (textAngle * Math.PI) / 180;
-                    const textX = this.centerX + Math.cos(textRadian) * (this.innerRadius + 15);
-                    const textY = this.centerY + Math.sin(textRadian) * (this.innerRadius + 15);
-                    
-                    this.drawText(textX, textY, (i + 1).toString(), 12, '#666666');
-                }
-            }
-
-            drawPlanets(planets) {
-                const calculator = new NatalChartCalculator();
-                Object.keys(planets).forEach(planetName => {
-                    const planet = planets[planetName];
-                    const angle = planet.longitude - 90;
-                    const radian = (angle * Math.PI) / 180;
-                    
-                    const x = this.centerX + Math.cos(radian) * this.planetRadius;
-                    const y = this.centerY + Math.sin(radian) * this.planetRadius;
-                    
-                    // Draw planet symbol
-                    this.drawText(x, y, calculator.planets[planetName].symbol, 14, calculator.planets[planetName].color);
+        // FAQ toggle functionality
+        function toggleFAQ(element) {
+            const answer = element.nextElementSibling;
+            const toggle = element.querySelector('.faq-toggle');
+            
+            if (answer.classList.contains('active')) {
+                answer.classList.remove('active');
+                toggle.textContent = '+';
+            } else {
+                // Close all other FAQ items
+                document.querySelectorAll('.faq-answer').forEach(item => {
+                    item.classList.remove('active');
                 });
-            }
-
-            markAscendant(ascendant) {
-                const angle = ascendant - 90;
-                const radian = (angle * Math.PI) / 180;
+                document.querySelectorAll('.faq-toggle').forEach(item => {
+                    item.textContent = '+';
+                });
                 
-                const x1 = this.centerX + Math.cos(radian) * (this.outerRadius - 10);
-                const y1 = this.centerY + Math.sin(radian) * (this.outerRadius - 10);
-                const x2 = this.centerX + Math.cos(radian) * (this.outerRadius + 10);
-                const y2 = this.centerY + Math.sin(radian) * (this.outerRadius + 10);
-                
-                this.drawLine(x1, y1, x2, y2, '#FF0000', 3);
-                
-                // AC label
-                const textX = this.centerX + Math.cos(radian) * (this.outerRadius + 25);
-                const textY = this.centerY + Math.sin(radian) * (this.outerRadius + 25);
-                this.drawText(textX, textY, 'AC', 12, '#FF0000');
+                // Open current FAQ item
+                answer.classList.add('active');
+                toggle.textContent = '−';
             }
         }
 
-        // Interpretation Generator Class
-        class InterpretationGenerator {
-            constructor() {
-                this.interpretations = {
-                    sun: {
-                        'Aries': 'You are a natural born leader with abundant energy and enthusiasm. Your pioneering spirit drives you to initiate new projects and adventures.',
-                        'Taurus': 'You possess a steady, reliable nature with a deep appreciation for beauty and comfort. Patience and determination are your greatest strengths.',
-                        'Gemini': 'Your curious mind and versatile nature make you an excellent communicator. You thrive on variety and intellectual stimulation.',
-                        'Cancer': 'You are deeply intuitive and nurturing, with strong ties to home and family. Your emotional intelligence guides your decisions.',
-                        'Leo': 'You radiate confidence and creativity, naturally drawing others to your magnetic personality. Self-expression is vital to your well-being.',
-                        'Virgo': 'Your analytical mind and attention to detail make you highly practical and efficient. You find fulfillment in service to others.',
-                        'Libra': 'You seek harmony and balance in all aspects of life. Your diplomatic nature and sense of justice make you a natural peacemaker.',
-                        'Scorpio': 'You possess intense emotional depth and transformative power. Your investigative nature seeks truth beneath the surface.',
-                        'Sagittarius': 'Your adventurous spirit and philosophical mind drive you to explore both the world and ideas. Freedom is essential to you.',
-                        'Capricorn': 'You are ambitious and disciplined, with a natural ability to build lasting structures. Achievement and responsibility motivate you.',
-                        'Aquarius': 'Your innovative mind and humanitarian spirit make you a visionary. You value independence and social progress.',
-                        'Pisces': 'You are deeply compassionate and intuitive, with rich inner worlds and artistic sensibilities. Empathy guides your actions.'
-                    },
-                    moon: {
-                        'Aries': 'Your emotional nature is direct and impulsive. You react quickly to situations and need emotional excitement and challenge.',
-                        'Taurus': 'You find emotional security in stability and comfort. Your feelings are steady and you need time to process changes.',
-                        'Gemini': 'Your emotions are changeable and intellectualized. You need variety and mental stimulation to feel emotionally satisfied.',
-                        'Cancer': 'Your emotions run deep and you have strong nurturing instincts. Home and family provide your emotional foundation.',
-                        'Leo': 'You have a dramatic emotional nature and need appreciation and recognition. Your feelings are warm and generous.',
-                        'Virgo': 'You approach emotions practically and analytically. You find comfort in routine and helping others.',
-                        'Libra': 'You seek emotional harmony and balance. Relationships and beauty are essential for your emotional well-being.',
-                        'Scorpio': 'Your emotional nature is intense and transformative. You experience feelings deeply and need emotional authenticity.',
-                        'Sagittarius': 'You need emotional freedom and adventure. Your feelings are optimistic and you seek meaning in experiences.',
-                        'Capricorn': 'You approach emotions cautiously and practically. You need structure and achievement for emotional security.',
-                        'Aquarius': 'Your emotional nature is independent and unconventional. You need space and intellectual connection.',
-                        'Pisces': 'Your emotions are deeply intuitive and compassionate. You absorb the feelings of others and need creative expression.'
-                    },
-                    ascendant: {
-                        'Aries': 'You appear energetic, confident, and ready for action. Others see you as a natural leader who takes initiative.',
-                        'Taurus': 'You appear calm, reliable, and grounded. Others perceive you as stable and someone they can depend on.',
-                        'Gemini': 'You appear curious, communicative, and versatile. Others see you as intelligent and socially adaptable.',
-                        'Cancer': 'You appear nurturing, sensitive, and protective. Others perceive you as caring and emotionally intuitive.',
-                        'Leo': 'You appear confident, charismatic, and creative. Others see you as warm-hearted and naturally dramatic.',
-                        'Virgo': 'You appear practical, organized, and helpful. Others perceive you as reliable and detail-oriented.',
-                        'Libra': 'You appear charming, diplomatic, and aesthetically aware. Others see you as graceful and fair-minded.',
-                        'Scorpio': 'You appear intense, mysterious, and powerful. Others perceive you as magnetic and emotionally deep.',
-                        'Sagittarius': 'You appear adventurous, optimistic, and philosophical. Others see you as free-spirited and wise.',
-                        'Capricorn': 'You appear serious, ambitious, and responsible. Others perceive you as mature and goal-oriented.',
-                        'Aquarius': 'You appear unique, progressive, and independent. Others see you as innovative and humanitarian.',
-                        'Pisces': 'You appear gentle, intuitive, and artistic. Others perceive you as compassionate and spiritually aware.'
-                    }
-                };
-            }
+        // Natal Chart Form Handler
+        document.getElementById('natalChartForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Redirect to the external calculator
+            window.open('https://aicalculator.in/natal-chart-calculator/', '_blank');
+        });
 
-            generateInterpretation(planet, sign) {
-                const planetKey = planet.toLowerCase();
-                if (this.interpretations[planetKey] && this.interpretations[planetKey][sign]) {
-                    return this.interpretations[planetKey][sign];
+        // Mobile menu toggle
+        document.getElementById('mobileMenuToggle').addEventListener('click', function() {
+            const navMenu = document.querySelector('.nav-menu');
+            navMenu.classList.toggle('active');
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
                 }
-                return `Your ${planet} in ${sign} brings unique energies to your personality and life path.`;
-            }
-        }
+            });
+        });
 
-        // Main Application Class
-        class NatalChartApp {
-            constructor() {
-                this.calculator = new NatalChartCalculator();
-                this.renderer = new ChartRenderer(document.getElementById('chartSvg'));
-                this.interpreter = new InterpretationGenerator();
-                this.initializeEventListeners();
-                this.setDefaultDate();
-            }
+        // Initialize stars when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            createStars();
+            
+            // Set default date to today
+            const today = new Date();
+            const dateString = today.toISOString().split('T')[0];
+            document.getElementById('birthDate').value = dateString;
+            document.getElementById('birthTime').value = '12:00';
+        });
 
-            initializeEventListeners() {
-                const form = document.getElementById('chartForm');
-                form.addEventListener('submit', (e) => {
-                    e.preventDefault();
-                    this.calculateChart();
-                });
-            }
-
-            setDefaultDate() {
-                const today = new Date();
-                const dateString = today.toISOString().split('T')[0];
-                document.getElementById('birthDate').value = dateString;
-                document.getElementById('birthTime').value = '12:00';
-            }
-
-            showError(message) {
-                const errorDiv = document.getElementById('errorMessage');
-                errorDiv.textContent = message;
-                errorDiv.style.display = 'block';
-            }
-
-            hideError() {
-                document.getElementById('errorMessage').style.display = 'none';
-            }
-
-            showLoading() {
-                document.getElementById('loading').style.display = 'block';
-            }
-
-            hideLoading() {
-                document.getElementById('loading').style.display = 'none';
-            }
-
-            validateInputs() {
-                const birthDate = document.getElementById('birthDate').value;
-                const birthTime = document.getElementById('birthTime').value;
-                const birthLocation = document.getElementById('birthLocation').value;
-
-                if (!birthDate) {
-                    throw new Error('Please enter your birth date.');
-                }
-                if (!birthTime) {
-                    throw new Error('Please enter your birth time.');
-                }
-                if (!birthLocation.trim()) {
-                    throw new Error('Please enter your birth location.');
-                }
-
-                return true;
-            }
-
-            parseBirthData() {
-                const birthDate = new Date(document.getElementById('birthDate').value + 'T' + document.getElementById('birthTime').value);
-                const timezoneOffset = parseFloat(document.getElementById('timezone').value);
-                const location = document.getElementById('birthLocation').value;
-
-                // For demo purposes, we'll use approximate coordinates
-                // In a real app, you'd use a geocoding service
-                const coordinates = this.getApproximateCoordinates(location);
-
-                return {
-                    year: birthDate.getFullYear(),
-                    month: birthDate.getMonth() + 1,
-                    day: birthDate.getDate(),
-                    hour: birthDate.getHours(),
-                    minute: birthDate.getMinutes(),
-                    latitude: coordinates.lat,
-                    longitude: coordinates.lng,
-                    timezoneOffset: timezoneOffset,
-                    location: location
-                };
-            }
-
-            getApproximateCoordinates(location) {
-                // Simplified coordinate lookup - in a real app, use a geocoding API
-                const locationMap = {
-                    'new york': { lat: 40.7128, lng: -74.0060 },
-                    'london': { lat: 51.5074, lng: -0.1278 },
-                    'paris': { lat: 48.8566, lng: 2.3522 },
-                    'tokyo': { lat: 35.6762, lng: 139.6503 },
-                    'sydney': { lat: -33.8688, lng: 151.2093 },
-                    'los angeles': { lat: 34.0522, lng: -118.2437 },
-                    'chicago': { lat: 41.8781, lng: -87.6298 },
-                    'toronto': { lat: 43.6532, lng: -79.3832 },
-                    'berlin': { lat: 52.5200, lng: 13.4050 },
-                    'rome': { lat: 41.9028, lng: 12.4964 }
-                };
-
-                const locationKey = location.toLowerCase().split(',')[0].trim();
-                return locationMap[locationKey] || { lat: 40.7128, lng: -74.0060 }; // Default to NYC
-            }
-
-            async calculateChart() {
-                try {
-                    this.hideError();
-                    this.validateInputs();
-                    this.showLoading();
-
-                    // Simulate calculation delay for better UX
-                    await new Promise(resolve => setTimeout(resolve, 1000));
-
-                    const birthData = this.parseBirthData();
-                    const chartData = this.calculator.calculateNatalChart(birthData);
-
-                    this.displayResults(chartData, birthData);
-                    this.hideLoading();
-
-                } catch (error) {
-                    this.hideLoading();
-                    this.showError(error.message);
-                }
-            }
-
-            displayResults(chartData, birthData) {
-                // Show results section
-                document.getElementById('resultsSection').style.display = 'block';
-                
-                // Render the chart
-                this.renderer.drawChart(chartData);
-                
-                // Display planet table
-                this.displayPlanetTable(chartData.planets);
-                
-                // Display interpretations
-                this.displayInterpretations(chartData, birthData);
-                
-                // Scroll to results
-                document.getElementById('resultsSection').scrollIntoView({ 
-                    behavior: 'smooth' 
-                });
-            }
-
-            displayPlanetTable(planets) {
-                const tbody = document.getElementById('planetTableBody');
-                tbody.innerHTML = '';
-
-                Object.keys(planets).forEach(planetName => {
-                    const planet = planets[planetName];
-                    const row = document.createElement('tr');
-                    
-                    row.innerHTML = `
-                        <td><span class="planet-symbol">${this.calculator.planets[planetName].symbol}</span> ${planetName}</td>
-                        <td>${planet.sign.symbol} ${planet.sign.name}</td>
-                        <td>${planet.degree.toFixed(1)}°</td>
-                        <td>House ${planet.house}</td>
-                    `;
-                    
-                    tbody.appendChild(row);
-                });
-            }
-
-            displayInterpretations(chartData, birthData) {
-                const interpretationsDiv = document.getElementById('interpretations');
-                interpretationsDiv.innerHTML = '<h3>Personal Interpretations</h3>';
-
-                // Birth Info Summary
-                const birthInfo = document.createElement('div');
-                birthInfo.className = 'interpretation-card';
-                birthInfo.innerHTML = `
-                    <h3>Birth Information</h3>
-                    <p><strong>Date:</strong> ${new Date(birthData.year, birthData.month - 1, birthData.day).toLocaleDateString()}</p>
-                    <p><strong>Time:</strong> ${birthData.hour.toString().padStart(2, '0')}:${birthData.minute.toString().padStart(2, '0')}</p>
-                    <p><strong>Location:</strong> ${birthData.location}</p>
-                    <p><strong>Ascendant:</strong> ${chartData.ascendantSign.degree.toFixed(1)}° ${chartData.ascendantSign.sign.name}</p>
-                `;
-                interpretationsDiv.appendChild(birthInfo);
-
-                // Sun Sign Interpretation
-                const sunPlanet = chartData.planets.Sun;
-                const sunCard = document.createElement('div');
-                sunCard.className = 'interpretation-card';
-                sunCard.innerHTML = `
-                    <h3>☉ Sun in ${sunPlanet.sign.name} (House ${sunPlanet.house})</h3>
-                    <p>${this.interpreter.generateInterpretation('sun', sunPlanet.sign.name)}</p>
-                `;
-                interpretationsDiv.appendChild(sunCard);
-
-                // Moon Sign Interpretation
-                const moonPlanet = chartData.planets.Moon;
-                const moonCard = document.createElement('div');
-                moonCard.className = 'interpretation-card';
-                moonCard.innerHTML = `
-                    <h3>☽ Moon in ${moonPlanet.sign.name} (House ${moonPlanet.house})</h3>
-                    <p>${this.interpreter.generateInterpretation('moon', moonPlanet.sign.name)}</p>
-                `;
-                interpretationsDiv.appendChild(moonCard);
-
-                // Ascendant Interpretation
-                const ascCard = document.createElement('div');
-                ascCard.className = 'interpretation-card';
-                ascCard.innerHTML = `
-                    <h3>Ascendant in ${chartData.ascendantSign.sign.name}</h3>
-                    <p>${this.interpreter.generateInterpretation('ascendant', chartData.ascendantSign.sign.name)}</p>
-                `;
-                interpretationsDiv.appendChild(ascCard);
-
-                // Additional planetary interpretations
-                ['Mercury', 'Venus', 'Mars'].forEach(planetName => {
-                    const planet = chartData.planets[planetName];
-                    const card = document.createElement('div');
-                    card.className = 'interpretation-card';
-                    card.innerHTML = `
-                        <h3>${this.calculator.planets[planetName].symbol} ${planetName} in ${planet.sign.name} (House ${planet.house})</h3>
-                        <p>Your ${planetName} in ${planet.sign.name} influences how you express this planetary energy. Located in House ${planet.house}, it affects this area of your life significantly.</p>
-                    `;
-                    interpretationsDiv.appendChild(card);
-                });
-
-                // Element and Quality Summary
-                this.displayElementQualitySummary(chartData.planets, interpretationsDiv);
-            }
-
-            displayElementQualitySummary(planets, container) {
-                const elements = { Fire: 0, Earth: 0, Air: 0, Water: 0 };
-                const qualities = { Cardinal: 0, Fixed: 0, Mutable: 0 };
-
-                Object.values(planets).forEach(planet => {
-                    elements[planet.sign.element]++;
-                    qualities[planet.sign.quality]++;
-                });
-
-                const summaryCard = document.createElement('div');
-                summaryCard.className = 'interpretation-card';
-                summaryCard.innerHTML = `
-                    <h3>Elemental & Quality Balance</h3>
-                    <p><strong>Elements:</strong> Fire: ${elements.Fire}, Earth: ${elements.Earth}, Air: ${elements.Air}, Water: ${elements.Water}</p>
-                    <p><strong>Qualities:</strong> Cardinal: ${qualities.Cardinal}, Fixed: ${qualities.Fixed}, Mutable: ${qualities.Mutable}</p>
-                    <p>This balance shows your fundamental approach to life and how you interact with the world.</p>
-                `;
-                container.appendChild(summaryCard);
-            }
-        }
-
-        // Initialize the application when the page loads
-        document.addEventListener('DOMContentLoaded', () => {
-            new NatalChartApp();
+        // Add parallax effect to stars
+        window.addEventListener('scroll', function() {
+            const scrolled = window.pageYOffset;
+            const stars = document.querySelectorAll('.star');
+            
+            stars.forEach((star, index) => {
+                const speed = 0.5 + (index % 3) * 0.2;
+                star.style.transform = `translateY(${scrolled * speed}px)`;
+            });
         });
     </script>
 </body>
-
 </html>
-
